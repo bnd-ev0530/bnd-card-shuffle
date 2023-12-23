@@ -39,19 +39,6 @@ button {
   margin: 2.5px;
 }
 
-.card.level1 {
-  height: 172px;
-  width: 48%;
-  margin: 4.5px;
-  box-sizing: border-box;
-}
-.card.level2 {
-  height: 117px;
-  width: 31%;
-  margin: 3.5px;
-  box-sizing: border-box;
-}
-
 .opening {
   width: 100vw;
   height: 100vh;
@@ -98,11 +85,5 @@ button {
     height: 100px;
     width: 17vw;
     margin: 3px;
-  }
-  .card.level1 {
-    height: 159px;
-    width: 47%;
-    margin: 4.5px;
-    box-sizing: border-box;
   }
 }

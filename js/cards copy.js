@@ -1,7 +1,5 @@
 var errors = 0;
-var cardList = ["001", "002", "003"];
-var cardList2 = ["001", "002", "003", "004", "005", "006"];
-var cardList3 = [
+var cardList = [
   "001",
   "002",
   "003",
@@ -13,18 +11,16 @@ var cardList3 = [
   "009",
   "010",
 ];
+
 var cardSet;
 var board = [];
-let rows = 2;
-let columns = 3;
+var rows = 4;
+var columns = 5;
 
 var card1Selected;
 var card2Selected;
 
 let score = document.getElementById("errors");
-let level = document.getElementById("level");
-let nowLevel = level.innerText;
-console.log(nowLevel);
 let fullURL = window.location.href;
 const shareBtn = document.getElementById("share");
 
@@ -34,14 +30,7 @@ window.onload = function () {
 };
 
 function shuffleCards() {
-  if (nowLevel === "1") {
-    cardSet = cardList.concat(cardList); //two of each card
-  } else if (nowLevel === "2") {
-    cardSet = cardList2.concat(cardList2); //two of each card
-  } else if (nowLevel === "3") {
-    cardSet = cardList3.concat(cardList3); //two of each card
-  }
-  console.log(nowLevel, cardSet);
+  cardSet = cardList.concat(cardList); //two of each card
   //shuffle
   for (let i = 0; i < cardSet.length; i++) {
     let j = Math.floor(Math.random() * cardSet.length); //get random index
@@ -53,13 +42,6 @@ function shuffleCards() {
 }
 
 function startGame() {
-  if (nowLevel === "2") {
-    rows = 3;
-    columns = 4;
-  } else if (nowLevel === "3") {
-    rows = 4;
-    columns = 5;
-  }
   //arrange the board 4x5
   for (let r = 0; r < rows; r++) {
     let row = [];
@@ -72,7 +54,6 @@ function startGame() {
       card.id = r.toString() + "-" + c.toString();
       card.src = "images/" + cardImg + ".jpg";
       card.classList.add("card");
-      card.classList.add(`level${nowLevel}`);
       card.addEventListener("click", selectCard);
       document.getElementById("board").append(card);
     }
@@ -121,13 +102,7 @@ function selectCard() {
         // Check if all cards are matched after updating the board state
         if (checkAllCardsMatched()) {
           console.log("All cards matched!");
-          nowLevel++;
-          if (nowLevel === "3") {
-            shareBtn.classList.add("showing");
-          } else {
-            moveToLink("level" + nowLevel + ".html");
-          }
-
+          shareBtn.classList.add("showing");
           // Any additional actions or logic you want to perform when all cards are matched
         } else {
           console.log("Not all cards matched yet.");
@@ -135,10 +110,6 @@ function selectCard() {
       }
     }
   }
-}
-
-function moveToLink(url) {
-  window.location.href = url;
 }
 
 function checkAllCardsMatched() {
@@ -177,3 +148,5 @@ function shareOnTwitter() {
   // Open the Twitter Web Intent in a new window
   window.open(twitterURL, "_blank");
 }
+
+console.log(score.textContent);
